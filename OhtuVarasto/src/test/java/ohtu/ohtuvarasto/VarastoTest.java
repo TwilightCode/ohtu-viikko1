@@ -36,6 +36,7 @@ public class VarastoTest {
 
     @Test
     public void lisataanLiikaaMaara() {
+     double saldo = 0;
         varasto.lisaaVarastoon(8);
         varasto.lisaaVarastoon(4);
         assertEquals(varasto.getTilavuus(), varasto.getSaldo(), vertailuTarkkuus);
