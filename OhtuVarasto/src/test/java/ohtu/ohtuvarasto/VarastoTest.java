@@ -21,6 +21,50 @@ public class VarastoTest {
     }
 
     @Test
+    public void lisataanNegatiivinenMaara() {
+        double saldo = varasto.getSaldo();
+        varasto.lisaaVarastoon(-0.1);
+        assertEquals(saldo, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisataanOKMaara() {
+        double saldo = varasto.getSaldo();
+        varasto.lisaaVarastoon(5.7);
+        assertEquals(saldo + 5.7, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisataanLiikaaMaara() {
+        varasto.lisaaVarastoon(8);
+        varasto.lisaaVarastoon(4);
+        assertEquals(varasto.getTilavuus(), varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void PoistetaanNegatiivinenMaara() {
+        varasto.lisaaVarastoon(5.7);
+        double saldo = varasto.getSaldo();
+        varasto.otaVarastosta(-0.7);
+        assertEquals(saldo, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void PoistetaanLiikaaMaara() {
+        varasto.lisaaVarastoon(5.7);
+        varasto.otaVarastosta(8);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void PoistetaanOKMaara() {
+        varasto.lisaaVarastoon(5.7);
+        double saldo = varasto.getSaldo();
+        varasto.otaVarastosta(3);
+        assertEquals((saldo - 3), varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
@@ -69,10 +113,10 @@ public class VarastoTest {
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
-        varasto = new Varasto(1,1);
-        varasto = new Varasto(1,2);
-        varasto = new Varasto(-1,2);
-        varasto = new Varasto(-1,-1);
+        varasto = new Varasto(1, 1);
+        varasto = new Varasto(1, 2);
+        varasto = new Varasto(-1, 2);
+        varasto = new Varasto(-1, -1);
         varasto.toString();
     }
 }
